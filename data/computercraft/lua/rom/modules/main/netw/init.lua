@@ -1,9 +1,7 @@
 local netw = {
 	interfaces = {},
-	eth = {},
+	phy = {},
 	wlan = {},
-	---@type {device: table, interface: Netw.Interface}
-	sideLUT = {},
 }
 
 local address = require("netw.address")
@@ -16,10 +14,10 @@ netw.init = function()
 		local device = nil
 		if modem.isWireless() then
 			device = wireless.wrap(modem)
-			netw.eth[#net.eth + 1] = device
+			netw.wlan[#netw.wlan + 1] = device
 		else
 			device = physical.wrap(modem)
-			netw.wlan[#net.wlan + 1] = device
+			netw.phy[#netw.phy + 1] = device
 		end
 		netw.interfaces[#netw.interfaces + 1] = interface.wrap(device)
 	end

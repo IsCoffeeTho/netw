@@ -27,4 +27,10 @@ address.toString = function(addr)
 	return string.format("%04x:%04x:%04x:%04x", addr[1], addr[2], addr[3], addr[4])
 end
 
+---@param addr Netw.Address
+---@return string
+address.toStream = function(addr)
+	return string.pack("<HHHH", table.unpack(addr))
+end
+
 return address
