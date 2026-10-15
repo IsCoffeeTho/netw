@@ -1,10 +1,9 @@
-local layer = require("netw.firmware.layer")
-
 local wireless = {}
 
 wireless.wrap = function(modem)
-	local this = layer.new(modem)
-
+	---@type Netw.
+	local this = {}
+	
 	this.SEND = function(pkt)
 		return false
 	end
